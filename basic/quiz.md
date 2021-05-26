@@ -15,9 +15,9 @@ console.log("start");
 ```
 
 
-    解答:
+    
 
-> 程式由上往下執行分別為 start→IIFE→end→Timeout，Javascript執行時，程序中的代碼依序進入stack中等待執行， 於是會先執行console.log("start")和console.log("IIFE") ，但當執行setTimeout()時，會被丟到webapi中並開始延時方法的處理， 當延時方法處理結束後，會被加入到（task queue) ，而當stack所有同步任務執行完畢，系統的事件迴圈(event loop)就會讀取task queue，看看裡面有哪些事件並讓它進入執行棧，開始執行。於是這範例結果依序會是console.log("end")後才是console.log("Timeout") 。
+> 解答:程式由上往下執行分別為 start→IIFE→end→Timeout，Javascript執行時，程序中的代碼依序進入stack中等待執行， 於是會先執行console.log("start")和console.log("IIFE") ，但當執行setTimeout()時，會被丟到webapi中並開始延時方法的處理， 當延時方法處理結束後，會被加入到（task queue) ，而當stack所有同步任務執行完畢，系統的事件迴圈(event loop)就會讀取task queue，看看裡面有哪些事件並讓它進入執行棧，開始執行。於是這範例結果依序會是console.log("end")後才是console.log("Timeout") 。
 >
 
 
@@ -39,9 +39,8 @@ console.log("end");
 
 ```
 
-    解答:
->
-如同剛剛的邏輯，即使我們使用 0 秒，它一樣會先將 cb 放到 WebAPIs 的計時器中，當時間到時，把該 cb 放到工作佇列（task queue）內，「等到」所有堆疊的內容都被清空後才會「立即」執行這個 cb。 
+    
+>解答: 如同剛剛的邏輯，即使我們使用 0 秒，它一樣會先將 cb 放到 WebAPIs 的計時器中，當時間到時，把該 cb 放到工作佇列（task queue）內，「等到」所有堆疊的內容都被清空後才會「立即」執行這個 cb。 
 程式由上往下執行分別為 start→IIFE→end→Timeout，Javascript執行時，程序中的代碼依序進入stack中等待執行， 於是會先執行console.log("start")和console.log("IIFE") ，但當執行setTimeout()時，會被丟到webapi中並開始延時方法的處理， 當延時方法處理結束後，會被加入到（task queue) ，而當stack所有同步任務執行完畢，系統的事件迴圈(event loop)就會讀取task queue，看看裡面有哪些事件並讓它進入執行棧，開始執行。於是這範例結果依序會是console.log("end")後才是console.log("Timeout") 。
 >
 # (3) 請問下列程式執行的結果為何？為什麼？
@@ -59,9 +58,8 @@ const foo = () => {
 
 foo();
 ```
-    解答:
->
-foo→bar→baz，foo()呼叫函式後，會接續執行console.log("foo")和console.log("bar")最後是console.log("baz")。
+    
+>解答: foo→bar→baz，foo()呼叫函式後，會接續執行console.log("foo")和console.log("bar")最後是console.log("baz")。
 >
 
 
@@ -80,9 +78,8 @@ const foo = () => {
 
 foo();
 ```
-     解答:
->
-foo→baz→bar，foo()呼叫函式後，會接續執行console.log("foo")和console.log("baz")，而由於bar()有設定setTimeout()所以是最後執行。
+     
+> 解答: foo→baz→bar，foo()呼叫函式後，會接續執行console.log("foo")和console.log("baz")，而由於bar()有設定setTimeout()所以是最後執行。
 >
 
 
