@@ -4,13 +4,16 @@ const fs = require("fs/promises");
 const moment = require("moment");
 const mysql = require("mysql");
 const Promise = require("bluebird");
+//引入 dotenv
+require("dotenv").config();
 
 //建立連線所需資料
 let connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "12345",
-  database: "stock",
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
 });
 //建立連線
 connection = Promise.promisifyAll(connection);
@@ -19,7 +22,7 @@ connection = Promise.promisifyAll(connection);
   try {
     await connection.connectAsync();
 
-    //讀取STOCK.TXT  
+    
     let stockCode = await fs.readFile("stock.txt", "utf-8");
     console.log(`我的 stock code: ${stockCode}`);
     let stock = await connection.queryAsync(`SELECT stock_id FROM stock WHERE stock_id = ${stockCode}`);
