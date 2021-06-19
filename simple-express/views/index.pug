@@ -1,6 +1,10 @@
 extends _layouts/master
 
+block scripts 
+    script(src="/javascripts/api.js") 
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js") 
+
 block content 
-  h1 這是首頁
-  
-  img(src="/images/1.01.jpg")
+    h1 這是首頁
+
+    img(src="/images/1.01.jpg")
